@@ -6,7 +6,7 @@ const LoginForm = () => {
       <aside>Username</aside>
       <input type="text" name="username" />
       <aside>Password</aside>
-      <input type="text" name="password" />
+      <input type="password" name="password" />
       <button type="submit">Submit</button>
     </form>
   );

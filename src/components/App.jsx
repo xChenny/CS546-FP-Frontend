@@ -1,16 +1,24 @@
-import React, { Component } from 'react';
-import LoginForm from './LoginForm'
-import Card from './Card'
-import '../style/App.css';
+import React, { Component } from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
+
+import LoginPage from "./Login";
+import DashPage from './Dashboard'
+import Error from './Error'
+import Editor from './Editor'
+
+import "../style/App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Card>
-          <LoginForm />
-        </Card>
-      </div>
+      <Router>
+        <div className="App">
+          <Route path="/login" component={LoginPage} />
+          <Route path="/dashboard" component={DashPage} />
+          <Route path="/error" component={Error} />
+          <Route path="/editor" component={Editor} />
+        </div>
+      </Router>
     );
   }
 }
