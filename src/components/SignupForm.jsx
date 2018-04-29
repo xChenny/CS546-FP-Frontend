@@ -1,9 +1,9 @@
 import React from "react";
 
-const LoginForm = () => {
+const SignupForm = () => {
   return (
-    <form action="http://localhost:5500/login" method="POST">
-      <h1>Welcome Back!</h1>
+    <form action="http://localhost:5500/create/user" method="POST">
+      <h1>Create Your Account</h1>
       <aside>Username</aside>
       <input type="text" name="username" />
       <aside>Password</aside>
@@ -11,8 +11,9 @@ const LoginForm = () => {
       <br />
       <button type="submit">Submit</button>
       <br />
-      <p>Don't have an account? Create one <a href="/login">here</a></p>
+      <p>Already have an account? Log in<a href="/login">here</a></p>
     </form>
   );
 };
-export default LoginForm;
+
+export default SignupForm;
