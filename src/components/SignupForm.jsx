@@ -11,7 +11,7 @@ const SignupForm = () => {
       <br />
       <button type="submit">Submit</button>
       <br />
-      <p>Already have an account? Log in<a href="/login">here</a></p>
+      <p>Already have an account? Log in <a href="/login">here</a></p>
     </form>
   );
 };
