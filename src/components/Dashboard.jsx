@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import axios from 'axios'
 
 export default class Dashboard extends Component {
   constructor(props) {
@@ -8,8 +9,11 @@ export default class Dashboard extends Component {
     }
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     console.log("Getting file urls...")
+    const files = await axios.get("http://localhost:5500/s3/all")
+    console.log(files.data)
+
   }
 
   render() {
