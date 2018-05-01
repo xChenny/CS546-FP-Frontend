@@ -10,6 +10,7 @@ export default class Dashboard extends Component {
 
   async componentDidMount() {
     console.log("Getting file urls...");
+    console.log((await axios.get('/s3/test').data))
     const filesPromise = await axios.get("http://localhost:5500/s3/all");
     const files = filesPromise.data;
     await this.setState({ files });
