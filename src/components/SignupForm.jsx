@@ -2,7 +2,7 @@ import React from "react";
 
 const SignupForm = () => {
   return (
-    <form action="http://localhost:5500/create/user" method="POST">
+    <form action="/create/user" method="POST">
       <h1>Create Your Account</h1>
       <aside>Username</aside>
       <input type="text" name="username" />
