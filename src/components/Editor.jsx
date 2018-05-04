@@ -1,12 +1,14 @@
-import React, { Component } from "react";
-import axios from "axios";
-import { withRouter } from "react-router-dom";
-import MonacoEditor from "react-monaco-editor";
+import React, { Component } from 'react'
+import axios from 'axios'
+import {withRouter} from 'react-router-dom'
+import MonacoEditor from 'react-monaco-editor'
+import ChangeFileName from './ChangeFileName';
 
 class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: this.props.match.params.id,
       code: "var thing = 'thing'"
     };
   }
@@ -15,6 +17,7 @@ class Editor extends Component {
     const { id } = this.props.match.params;
     const filePromise = await axios.get(`/s3/${id}`);
     const file = filePromise.data;
+    if (!file) return;
     console.log(file);
     await this.setState({ file });
   }
@@ -23,12 +26,8 @@ class Editor extends Component {
     editor.focus();
   }
 
-  onChange(newValue, e) {
-    console.log("onChange", newValue, e);
-  }
-
-  render() {
-    const { code, file } = this.state;
+  render () {
+    const { code, file } = this.state
     const config = {
       options: {
         selectOnLineNumbers: true

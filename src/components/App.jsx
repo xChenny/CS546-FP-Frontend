@@ -5,6 +5,7 @@ import FormPage from './FormPage'
 import DashPage from './Dashboard'
 import Error from './Error'
 import Editor from './Editor'
+import FileName from './ChangeFileName'
 
 import '../style/App.css'
 
@@ -25,6 +26,7 @@ class App extends Component {
           <Route path='/dashboard' component={DashPage} />
           <Route path='/error' component={Error} />
           <Route path='/editor/:id' component={Editor} />
+          <Route path='/newfile' component={FileName} />
         </div>
       </Router>
     )
