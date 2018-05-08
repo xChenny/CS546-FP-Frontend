@@ -26,13 +26,13 @@ export default class Dashboard extends Component {
         <Card cardStyle={{padding: '10px'}} >
           <h1>Welcome to the Dashboard</h1>
           <div className='grid' style={gridStyle}>
-            <a href="/newfile">
+            <a href='/newfile'>
               <Card>
                 <h3>Create New...</h3>
               </Card>
             </a>
-            {this.state.files && this.state.files.map(file => {
-              return <a href={`/editor/${file.Key}`}>
+            {this.state.files && this.state.files.map((file, index) => {
+              return <a key={index} href={`/editor/${file.Key}`}>
                 <Card>
                   <h3>{file.Key}</h3>
                 </Card>
