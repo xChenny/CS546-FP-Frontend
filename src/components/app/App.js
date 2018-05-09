@@ -48,6 +48,10 @@ class App extends Component {
           <Route path="/error" render={() => FormPage("error")} />
           <Route path="/editor/:id" component={Editor} />
           <Route path="/newfile" render={() => FormPage("filename")} />
+
+          {/* File uploading test */}
+          <Route path="/fileUpload" render={() => FormPage("upload")} />
+
         </div>
       </Router>
     );

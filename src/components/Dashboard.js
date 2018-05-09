@@ -31,6 +31,14 @@ export default class Dashboard extends Component {
                 <h3>Create New...</h3>
               </Card>
             </a>
+
+            {/* File Upload Test */}
+            <a href='/fileUpload'>
+              <Card>
+                <h3>Upload File...</h3>
+              </Card>
+            </a>
+
             {this.state.files && this.state.files.map((file, index) => {
               return <a key={index} href={`/editor/${file.Key}`}>
                 <Card>
