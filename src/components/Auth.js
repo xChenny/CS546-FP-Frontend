@@ -1,14 +1,12 @@
-import React from 'react'
-import Error from './Error'
-import { withRouter } from 'react-router'
+import React from "react";
+import { Redirect, withRouter } from "react-router";
 
-const Auth = ({ loginState, path, desiredComponent }) => {
-  const { history } = this.props
-  const url = loginState ? path : '/error'
-  history.push(url)
-  return (
-    loginState ? <Error /> : <desiredComponent />
-  )
-}
+const Auth = ({ loggedIn, path, component, history }) => {
+  console.log(loggedIn)
+  if (true) {
+    history.push(path);
+    return <component />;
+  } else return <Redirect to="/error" />;
+};
 
-export default withRouter(Auth)
+export default withRouter(Auth);

@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import Card from './Card'
+import Files from './Files'
+import Sidebar from './Sidebar'
 
 export default class Dashboard extends Component {
   constructor (props) {
@@ -16,28 +18,13 @@ export default class Dashboard extends Component {
   }
 
   render () {
-    const gridStyle = {
-      display: 'grid',
-      gridTemplateColumns: '1fr 1fr 1fr'
-    }
-
     return (
       <div className='dashboard'>
-        <Card cardStyle={{padding: '10px'}} >
-          <h1>Welcome to the Dashboard</h1>
-          <div className='grid' style={gridStyle}>
-            <a href='/newfile'>
-              <Card>
-                <h3>Create New...</h3>
-              </Card>
-            </a>
-            {this.state.files && this.state.files.map((file, index) => {
-              return <a key={index} href={`/editor/${file.Key}`}>
-                <Card>
-                  <h3>{file.Key}</h3>
-                </Card>
-              </a>
-            })}
+        <h1 style={{color: 'white', textAlign: 'center'}}>Welcome to the Dashboard</h1>
+        <Card style={{padding: '100px', margin: '100px'}} >
+          <div className='row' style={{display: 'flex'}}>
+            <Sidebar />
+            <Files files={this.state.files} />
           </div>
         </Card>
       </div>

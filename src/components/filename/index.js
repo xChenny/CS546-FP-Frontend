@@ -2,9 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import { Redirect } from 'react-router'
 
-export const onSubmit = (e, name, history) => {
+export const onSubmit = async (e, name, history) => {
   e.preventDefault()
-  axios.post(`/s3/${name}`, {text: ''})
-  // history.push(`/editor/${name}`)
-  return (<Redirect to={`/editor/${name}`} />)
+  const promise = await axios.post(`/s3/${name}`, {text: ''})
+  if (promise.data)
+    history.push(`/editor/${name}`)
 }

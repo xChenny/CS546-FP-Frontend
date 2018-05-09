@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 
+import Auth from "../Auth";
+import Navbar from "../Navbar";
 import Homepage from "../Homepage";
 import FormPage from "../FormPage";
 import DashPage from "../Dashboard";
@@ -35,17 +37,22 @@ class App extends Component {
   }
 
   render() {
+    const { loggedIn } = this.state.loginState
     return (
       <Router>
         <div className="App">
           {/* Doesn't Require Auth */}
+          <Route path="/" component={Navbar} />
           <Route exact path="/" component={Homepage} />
           <Route exact path="/signup" render={() => FormPage("signup")} />
           <Route exact path="/login" render={() => FormPage("login")} />
+          <Route path="/error" render={() => FormPage("error")} />
 
           {/* Requires Auth */}
+          {/* <Route path="/dashboard" component={DashPage} />
+          <Route path="/editor/:id" render={({match}) => Auth(loggedIn, `/editor/${match.params.id}`, Editor)} />
+          <Route path="/newfile" render={() => Auth(loggedIn, '/newfile', FormPage("filename"))} /> */}
           <Route path="/dashboard" component={DashPage} />
-          <Route path="/error" render={() => FormPage("error")} />
           <Route path="/editor/:id" component={Editor} />
           <Route path="/newfile" render={() => FormPage("filename")} />
         </div>

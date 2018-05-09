@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { withRouter, Link } from "react-router-dom";
+import { Redirect } from "react-router";
+// import Auth from '../Auth'
 import MonacoEditor from "react-monaco-editor";
 
 class Editor extends Component {
@@ -54,7 +56,9 @@ class Editor extends Component {
           height="600"
           language="javascript"
           value={code}
-          onChange={(e) => {this.setState({code: e})}}
+          onChange={e => {
+            this.setState({ code: e });
+          }}
           options={config.options}
           requireConfig={config.requireConfig}
           editorDidMount={this.editorDidMount}

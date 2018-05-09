@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import Editor from "./Editor";
 
 const mapStateToProps = state => ({
-  loggedIn: state.loggedIn
+  loggedIn: state.loginState.loggedIn
 });
 
 const mapDispatchToProps = dispatch => ({
