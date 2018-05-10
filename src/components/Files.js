@@ -17,6 +17,13 @@ class Files extends Component {
     }
   };
 
+  getExtension (filename) {
+    if (filename.indexOf('.')) {
+      const tokens = filename.split('.')
+      return tokens[tokens.length-1]
+    }
+  }
+
   render() {
     const gridStyle = {
       display: "grid",
@@ -24,13 +31,18 @@ class Files extends Component {
     };
 
     const { history, files } = this.props
+    const imageType = /jpeg|jpg|png|gif|pdf/
 
     return (
       <div className="grid" style={gridStyle}>
         {files.map((file, index) => {
+          const filename = file.Key
+          const ext = this.getExtension(filename)
+          const isImage = imageType.test(ext.toLowerCase())
+          const url = isImage ? `/image/${filename}` : `/editor/${filename}`
           return (
             <Card key={index}>
-              <Link to={`/editor/${file.Key}`}>
+              <Link to={url}>
                 <h3>{file.Key}</h3>
               </Link>
               <button onClick={() => this.deleteFile(history, file.Key)}>x</button>

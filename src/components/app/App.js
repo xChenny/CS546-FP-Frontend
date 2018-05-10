@@ -7,7 +7,8 @@ import Navbar from "../Navbar";
 import Homepage from "../Homepage";
 import FormPage from "../FormPage";
 import DashPage from "../Dashboard";
-import Editor from "../editor/Editor";
+import Editor from "../editor";
+import ImageViewer from '../imageviewer/Image'
 
 import "../../style/App.css";
 
@@ -27,10 +28,6 @@ class App extends Component {
     await this.setState({
       loginState: nextProps.loginState
     });
-    console.log(this.state.loginState.loggedIn);
-  }
-
-  componentDidMount() {
     console.log(this.state.loginState.loggedIn);
   }
 
@@ -59,9 +56,10 @@ class App extends Component {
           <Route path="/dashboard" component={DashPage} />
           <Route path="/editor/:id" component={Editor} />
           <Route path="/newfile" render={() => FormPage("filename")} />
+          <Route path="/image/:id" component={ImageViewer} />
 
           {/* File uploading test */}
-          <Route path="/fileUpload" render={() => FormPage("upload")} />
+          <Route path="/uploadfile" render={() => FormPage("upload")} />
 
         </div>
       </Router>

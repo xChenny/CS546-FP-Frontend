@@ -9,39 +9,40 @@ class Editor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      filename: this.props.match.params.id
+      fileName: this.props.match.params.id,
+      fileType: "",
+      code: ""
     };
   }
 
-  onSave(filename, text) {
-    axios.post(`/s3/${filename}`, { text });
-  }
-
-  downloadFile(filename, text) {
-    var file = document.createElement("a");
-    file.setAttribute("target", "_blank");
-    file.setAttribute("href", "data:text/plain," + encodeURIComponent(text));
-    file.setAttribute("download", filename);
-    document.body.appendChild(file);
-    file.click();
-    document.body.removeChild(file);
-  }
-
   async componentDidMount() {
-    const { filename } = this.state;
-    const filePromise = await axios.get(`/s3/${filename}`);
-    const code = filePromise.data;
-    if (!code) return;
-    console.log(code);
-    await this.setState({ code });
+    console.log('running componentDidMount')
+    const { changeFile, changeFileType, getLanguage } = this.props;
+    const fileName = this.props.match.params.id;
+    // change redux current fileName
+    changeFile(fileName);
+    changeFileType(getLanguage(fileName));
+    const promise = await axios.get(`/s3/${fileName}`);
+    const code = promise.data;
+    if (!code) {
+      console.log("Error getting file from S3!");
+    } else {
+      this.setState({ code });
+    }
   }
 
+  // editorDidMount is not guaranteed to run after componentDidMount apparently...
   async editorDidMount(editor, monaco) {
+    const { getLanguage, match } = this.props;
+    const fileName = match.params.id
+    await this.setState({ fileType: getLanguage(fileName) });
     editor.focus();
+    console.log(this.state.fileType);
   }
 
   render() {
-    const { filename, code } = this.state;
+    const { onSave, downloadFile, fileName } = this.props;
+    const { code, fileType } = this.state;
     const config = {
       options: {
         selectOnLineNumbers: true
@@ -60,20 +61,19 @@ class Editor extends Component {
         <Link to="/dashboard">
           <button>HOME</button>
         </Link>
-        <button onClick={() => this.onSave(filename, code)}>SAVE</button>
-        <button onClick={() => this.downloadFile(filename, code)}>Download</button>
-
+        <button onClick={() => onSave(fileName, code)}>SAVE</button>
+        <button onClick={() => downloadFile(fileName, code)}>Download</button>
         <MonacoEditor
-          width="800"
-          height="600"
-          language="javascript"
+          width="600"
+          height="800"
+          language={fileType}
           value={code}
           onChange={e => {
             this.setState({ code: e });
           }}
           options={config.options}
           requireConfig={config.requireConfig}
-          editorDidMount={this.editorDidMount}
+          editorDidMount={this.editorDidMount.bind(this)}
         />
       </div>
     );

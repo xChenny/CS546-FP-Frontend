@@ -1,4 +1,5 @@
 import React from 'react'
+import { NavLink } from 'react-router-dom'
 
 // A Navbar presentational component
 
@@ -11,6 +12,8 @@ const Navbar = () => {
   return (
     <div className='navbar' style={style}>
       <p style={{margin: '0px'}}>Navbar</p>
+      <NavLink to='/'>Home </NavLink>
+      <NavLink to='/dashboard'>Dashboard</NavLink>
     </div>
   )
 }

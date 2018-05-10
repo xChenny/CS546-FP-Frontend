@@ -11,6 +11,9 @@ const Sidebar = () => {
   return (
     <div className="sidebar" style={style}>
       <ul>
+        <NavLink to="/uploadfile">
+          <li>Upload a File</li>
+        </NavLink>
         <NavLink to="/newfile">
           <li>Create New</li>
         </NavLink>

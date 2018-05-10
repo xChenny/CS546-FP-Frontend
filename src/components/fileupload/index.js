@@ -1,12 +1,5 @@
 import axios from "axios";
 
-// const readFile = desiredFile => {
-//   const reader = new FileReader();
-//   reader.readAsText(desiredFile, "UTF-8");
-//   reader.onload = e => e.target.result;
-//   reader.onerror = e => false;
-// };
-
 export const onSubmit = async (e, history) => {
   e.preventDefault();
   const file = e.target.fileUpload;
@@ -20,7 +13,7 @@ export const onSubmit = async (e, history) => {
       "content-type": "multipart/form-data"
     }
   };
-  const promise = await axios.post(`/s3/${fileName}`, formData, config);
+  const promise = await axios.post(`/s3/upload/${fileName}`, formData, config);
   const data = promise.data;
   console.log(`This is the returned data after uploading: ${data}`);
   console.log(data);
