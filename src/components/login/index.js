@@ -1,8 +1,11 @@
-import React from "react";
 import axios from "axios";
 import { connect } from "react-redux";
 import LoginForm from "./LoginForm";
 import { login } from "./actions";
+
+// Container component for the Login Presentational component
+
+// Contains all of the logic (and no presentation) for the Login component
 
 const verifyAndRedirect = async (e, loginActionCreator, history) => {
   e.preventDefault();

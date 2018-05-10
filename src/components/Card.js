@@ -1,6 +1,8 @@
 import React from 'react'
 import '../style/App.css'
 
+// A Card component
+
 const Card = (props) => {
   const style = {
     padding: '1.5em',

@@ -3,6 +3,8 @@ import axios from "axios";
 import { connect } from "react-redux";
 import Editor from "./Editor";
 
+// Container Component for connecting Editor Component with Redux
+
 const mapStateToProps = state => ({
   loggedIn: state.loginState.loggedIn
 });

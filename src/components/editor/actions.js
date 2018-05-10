@@ -1,3 +1,5 @@
+// Action creators used for Redux
+
 export const save = () => {
   return {
     type: 'SAVE'

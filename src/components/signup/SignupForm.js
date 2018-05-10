@@ -1,5 +1,7 @@
 import React from 'react'
 
+// Presentational component for the Signup system of the application
+
 const SignupForm = () => {
   return (
     <form action='/create/user' method='POST'>

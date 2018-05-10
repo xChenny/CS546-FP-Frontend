@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { withRouter, Link } from "react-router-dom";
-import { Redirect } from "react-router";
-// import Auth from '../Auth'
 import MonacoEditor from "react-monaco-editor";
+
+// Component for the File Editor View
 
 class Editor extends Component {
   constructor(props) {

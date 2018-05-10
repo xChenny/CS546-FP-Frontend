@@ -1,5 +1,7 @@
 import React from 'react'
 
+// A Navbar presentational component
+
 const Navbar = () => {
   const style = {
     width: '100vw',

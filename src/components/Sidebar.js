@@ -1,6 +1,8 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
+// A sidebar presentational component
+
 const Sidebar = () => {
   const style = {
     backgroundColor: "white",

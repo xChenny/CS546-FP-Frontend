@@ -1,6 +1,8 @@
 import React from 'react'
 import { withRouter } from 'react-router'
 
+// Presentational component for the Login System
+
 const LoginForm = ({ loggedIn, login, history, verify }) => {
   return (
     <form onSubmit={e => verify(e, login, history)}>

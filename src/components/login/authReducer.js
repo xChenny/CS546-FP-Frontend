@@ -1,3 +1,8 @@
+// Reducer for the Login component
+
+// Used to interpret what needs to change in the state
+// when an action is "dispatched"
+
 const loginState = (state = {loggedIn: false}, action) => {
   switch (action.type) {
     case 'LOGIN':

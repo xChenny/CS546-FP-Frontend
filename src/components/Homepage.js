@@ -2,6 +2,8 @@ import React from 'react'
 import Card from './Card'
 import { Link } from 'react-router-dom'
 
+// A homepage presentational component
+
 const Homepage = () => {
   return (
     <Card>

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 
-import Auth from "../Auth";
+// import Auth from "../Auth";
 import Navbar from "../Navbar";
 import Homepage from "../Homepage";
 import FormPage from "../FormPage";
@@ -11,6 +11,10 @@ import Editor from "../editor/Editor";
 
 import "../../style/App.css";
 
+/* 
+    This is the Layout Component responsible for creating 
+    the layout for the Application 
+*/
 class App extends Component {
   constructor(props) {
     super(props);
@@ -37,7 +41,7 @@ class App extends Component {
   }
 
   render() {
-    const { loggedIn } = this.state.loginState
+    // const { loggedIn } = this.state.loginState
     return (
       <Router>
         <div className="App">
@@ -55,6 +59,10 @@ class App extends Component {
           <Route path="/dashboard" component={DashPage} />
           <Route path="/editor/:id" component={Editor} />
           <Route path="/newfile" render={() => FormPage("filename")} />
+
+          {/* File uploading test */}
+          <Route path="/fileUpload" render={() => FormPage("upload")} />
+
         </div>
       </Router>
     );
