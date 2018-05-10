@@ -17,6 +17,16 @@ class Editor extends Component {
     axios.post(`/s3/${filename}`, { text });
   }
 
+  downloadFile(filename, text) {
+    var file = document.createElement("a");
+    file.setAttribute("target", "_blank");
+    file.setAttribute("href", "data:text/plain," + encodeURIComponent(text));
+    file.setAttribute("download", filename);
+    document.body.appendChild(file);
+    file.click();
+    document.body.removeChild(file);
+  }
+
   async componentDidMount() {
     const { filename } = this.state;
     const filePromise = await axios.get(`/s3/${filename}`);
@@ -51,6 +61,8 @@ class Editor extends Component {
           <button>HOME</button>
         </Link>
         <button onClick={() => this.onSave(filename, code)}>SAVE</button>
+        <button onClick={() => this.downloadFile(filename, code)}>Download</button>
+
         <MonacoEditor
           width="800"
           height="600"
