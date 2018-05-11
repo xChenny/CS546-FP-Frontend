@@ -20,8 +20,13 @@ export default class Dashboard extends Component {
     await this.setState({ files });
   }
 
+  removeFile(fileName) {
+    let files = this.state.files;
+    files = files.filter(file => file.Key !== fileName);
+    this.setState({ files });
+  }
+
   render() {
-    const { removeFile } = this.props
     return (
       <div className="dashboard">
         <div className="hero">
@@ -38,7 +43,7 @@ export default class Dashboard extends Component {
           <Card>
             <Files
               files={this.state.files}
-              removeFile={removeFile.bind(this)}
+              removeFile={this.removeFile.bind(this)}
             />
           </Card>
         </div>

@@ -10,8 +10,9 @@ import Error from "./Error";
 // A multi-purpose presentational component that renders a Card component
 // the various forms that we have for the user
 
-const FormPage = view => {
+const FormPage = ({view}) => {
   let page = 0;
+  console.log("The current view is: ", view)
   switch (view) {
     case "login":
       page = <LoginForm />;

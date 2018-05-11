@@ -22,7 +22,7 @@ class App extends Component {
 
   auth(component) {
     if (!this.props.loggedIn) {
-      return FormPage("error");
+      return <FormPage view="error" />;
     } else {
       return component;
     }
@@ -36,9 +36,9 @@ class App extends Component {
           {/* Doesn't Require Auth */}
           <Route path="/" component={() => <Navbar loggedIn={loggedIn} />} />
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/signup" render={() => FormPage("signup")} />
-          <Route exact path="/login" render={() => FormPage("login")} />
-          <Route path="/error" render={() => FormPage("error")} />
+          <Route exact path="/signup" render={() => <FormPage view="signup" />} />
+          <Route exact path="/login" component={() => <FormPage view="login" />} />
+          <Route path="/error" render={<FormPage view="error" />} />
 
           {/* Requires Auth */}
           <Route path="/dashboard" render={() => this.auth(<DashPage />)} />
