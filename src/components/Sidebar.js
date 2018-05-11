@@ -5,17 +5,32 @@ import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
   const style = {
-    backgroundColor: "white",
     width: "200px"
   };
   return (
     <div className="sidebar" style={style}>
-      <ul>
+      <ul className="no-style-list">
         <NavLink to="/uploadfile">
-          <li>Upload a File</li>
+          <li>
+            <button
+              class="btn btn-primary btn-reduce-on-xs"
+              style={{ width: "100%" }}
+            >
+              <span className='fui-upload' />
+              &nbsp;Upload a File
+            </button>
+          </li>
         </NavLink>
         <NavLink to="/newfile">
-          <li>Create New</li>
+          <li>
+            <button
+              class="btn btn-primary btn-reduce-on-xs"
+              style={{ width: "100%" }}
+            >
+              <span className='fui-plus' />
+              &nbsp;Create new File
+            </button>
+          </li>
         </NavLink>
       </ul>
     </div>

@@ -23,15 +23,21 @@ export default class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard">
-        <h1 style={{ color: "white", textAlign: "center" }}>
-          Welcome to the Dashboard
-        </h1>
-        <Card style={{ padding: "100px", margin: "100px" }}>
-          <div className="row" style={{ display: "flex" }}>
+        <div className="hero">
+          <h1
+            style={{ color: "white", textAlign: "center", paddingTop: "30px" }}
+          >
+            Welcome to the Dashboard
+          </h1>
+        </div>
+        <div className="dashboard-content">
+          <Card>
             <Sidebar />
+          </Card>
+          <Card>
             <Files files={this.state.files} />
-          </div>
-        </Card>
+          </Card>
+        </div>
       </div>
     );
   }

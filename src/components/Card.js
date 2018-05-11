@@ -9,10 +9,13 @@ const Card = (props) => {
     background: 'white',
     boxShadow: '0 4px 8px 0 rgba(0,0,0,0.2)',
     transition: '0.3s',
-    margin: '.5em'
+    margin: '.5em',
+    borderRadius: '10px',
+    backgroundColor: '#ecf0f1',
+    textAlign: 'center'
   }
 
-  if (props.style) Object.assign(style, props.style)
+  if (props.cardStyle) Object.assign(style, props.cardStyle)
 
   return (
     <div className='card' style={style}>

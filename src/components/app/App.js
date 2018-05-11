@@ -9,6 +9,7 @@ import FormPage from "../FormPage";
 import DashPage from "../Dashboard";
 import Editor from "../editor";
 import ImageViewer from '../imageviewer/Image'
+import Filepond from '../fileupload/FilePond'
 
 import "../../style/App.css";
 
@@ -59,7 +60,8 @@ class App extends Component {
           <Route path="/image/:id" component={ImageViewer} />
 
           {/* File uploading test */}
-          <Route path="/uploadfile" render={() => FormPage("upload")} />
+          {/* <Route path="/uploadfile" render={() => FormPage("upload")} /> */}
+          <Route path="/uploadfile" component={Filepond} />
 
         </div>
       </Router>

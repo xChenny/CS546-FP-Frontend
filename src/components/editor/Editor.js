@@ -16,7 +16,7 @@ class Editor extends Component {
   }
 
   async componentDidMount() {
-    console.log('running componentDidMount')
+    console.log("running componentDidMount");
     const { changeFile, changeFileType, getLanguage } = this.props;
     const fileName = this.props.match.params.id;
     // change redux current fileName
@@ -34,7 +34,7 @@ class Editor extends Component {
   // editorDidMount is not guaranteed to run after componentDidMount apparently...
   async editorDidMount(editor, monaco) {
     const { getLanguage, match } = this.props;
-    const fileName = match.params.id
+    const fileName = match.params.id;
     await this.setState({ fileType: getLanguage(fileName) });
     editor.focus();
     console.log(this.state.fileType);
@@ -63,18 +63,28 @@ class Editor extends Component {
         </Link>
         <button onClick={() => onSave(fileName, code)}>SAVE</button>
         <button onClick={() => downloadFile(fileName, code)}>Download</button>
-        <MonacoEditor
-          width="600"
-          height="800"
-          language={fileType}
-          value={code}
-          onChange={e => {
-            this.setState({ code: e });
+        <div
+          style={{
+            padding: "30px",
+            backgroundColor: "white",
+            borderRadius: "5px",
+            width: "50%",
+            margin: "20px"
           }}
-          options={config.options}
-          requireConfig={config.requireConfig}
-          editorDidMount={this.editorDidMount.bind(this)}
-        />
+        >
+          <MonacoEditor
+            width="650"
+            height="600"
+            language={fileType}
+            value={code}
+            onChange={e => {
+              this.setState({ code: e });
+            }}
+            options={config.options}
+            requireConfig={config.requireConfig}
+            editorDidMount={this.editorDidMount.bind(this)}
+          />
+        </div>
       </div>
     );
   }
