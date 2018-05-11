@@ -1,5 +1,18 @@
 import axios from "axios";
 
+export const filePondSubmit = async (file, fileName) => {
+  const formData = new FormData();
+  formData.append("file", file);
+  const config = {
+    headers: {
+      "content-type": "multipart/form-data"
+    }
+  };
+  const promise = await axios.post(`/s3/upload/${fileName}`, formData, config);
+  const data = promise.data;
+  console.log(data)
+}
+
 export const onSubmit = async (e, history) => {
   e.preventDefault();
   const file = e.target.fileUpload;

@@ -5,7 +5,6 @@ import { Redirect, withRouter } from "react-router";
 // private web pages
 
 const Auth = ({ loggedIn, path, component, history }) => {
-  console.log(loggedIn)
   if (true) {
     history.push(path);
     return <component />;

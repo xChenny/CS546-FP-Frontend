@@ -3,17 +3,19 @@
 // Used to interpret what needs to change in the state
 // when an action is "dispatched"
 
-const loginState = (state = {loggedIn: false}, action) => {
+const loginState = (state = {loggedIn: false, username: 'no user'}, action) => {
   switch (action.type) {
     case 'LOGIN':
       return {
         ...state,
-        loggedIn: true
+        loggedIn: true,
+        username: action.username
       }
     case 'LOGOUT':
       return {
         ...state,
-        loggedIn: false
+        loggedIn: false,
+        username: undefined
       }
     default:
       return state

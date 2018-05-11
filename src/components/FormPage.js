@@ -3,8 +3,8 @@ import Card from "./Card";
 
 import LoginForm from "./login";
 import SignupForm from "./signup/SignupForm";
-import CreateNewFile from "./createfile";
-import FileUploadForm from "./fileupload/FileUploadForm";
+import CreateNewFile from "./createfile/CreateFile";
+import Filepond from "./fileupload/FilePond";
 import Error from "./Error";
 
 // A multi-purpose presentational component that renders a Card component
@@ -20,7 +20,7 @@ const FormPage = view => {
       page = <SignupForm />;
       break;
     case "upload":
-      page = <FileUploadForm />;
+      page = <Filepond />;
       break;
     case "error":
       page = <Error />;

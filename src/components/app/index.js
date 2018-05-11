@@ -4,7 +4,7 @@ import App from './App'
 // Container Component for connecting App Component with Redux
 
 const mapStateToProps = state => ({
-  loginState: state.loginState
+  loggedIn: state.loginState.loggedIn
 })
 
 export default connect(

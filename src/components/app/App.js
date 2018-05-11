@@ -3,13 +3,13 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 
 // import Auth from "../Auth";
-import Navbar from "../Navbar";
+import Navbar from "../navbar";
 import Homepage from "../Homepage";
 import FormPage from "../FormPage";
-import DashPage from "../Dashboard";
+import DashPage from "../dashboard";
 import Editor from "../editor";
-import ImageViewer from '../imageviewer/Image'
-import Filepond from '../fileupload/FilePond'
+import ImageViewer from "../imageviewer/Image";
+import Grid from "../editor/Grid";
 
 import "../../style/App.css";
 
@@ -18,51 +18,42 @@ import "../../style/App.css";
     the layout for the Application 
 */
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      loginState: props.loginState
-    };
-  }
+  // This component gets the loggedIn variable from the redux state
 
-  async componentWillReceiveProps(nextProps) {
-    await this.setState({
-      loginState: nextProps.loginState
-    });
-    console.log(this.state.loginState.loggedIn);
-  }
-
-  async login(user, password) {
-    if (this.state.loggedIn) return;
-    const response = axios.post("/login", { user, password });
-    if (response.data) this.setState({ loggedIn: true });
+  auth(component) {
+    if (!this.props.loggedIn) {
+      return FormPage("error");
+    } else {
+      return component;
+    }
   }
 
   render() {
-    // const { loggedIn } = this.state.loginState
+    const { loggedIn } = this.props;
     return (
       <Router>
         <div className="App">
           {/* Doesn't Require Auth */}
-          <Route path="/" component={Navbar} />
+          <Route path="/" component={() => <Navbar loggedIn={loggedIn} />} />
           <Route exact path="/" component={Homepage} />
           <Route exact path="/signup" render={() => FormPage("signup")} />
           <Route exact path="/login" render={() => FormPage("login")} />
           <Route path="/error" render={() => FormPage("error")} />
 
           {/* Requires Auth */}
-          {/* <Route path="/dashboard" component={DashPage} />
-          <Route path="/editor/:id" render={({match}) => Auth(loggedIn, `/editor/${match.params.id}`, Editor)} />
-          <Route path="/newfile" render={() => Auth(loggedIn, '/newfile', FormPage("filename"))} /> */}
-          <Route path="/dashboard" component={DashPage} />
-          <Route path="/editor/:id" component={Editor} />
-          <Route path="/newfile" render={() => FormPage("filename")} />
-          <Route path="/image/:id" component={ImageViewer} />
+          <Route path="/dashboard" render={() => this.auth(<DashPage />)} />
+          <Route path="/editor/:id" render={() => this.auth(<Editor />)} />
+          <Route path="/image/:id" render={() => this.auth(<ImageViewer />)} />
+          <Route
+            path="/newfile"
+            render={() => this.auth(<FormPage view="filename" />)}
+          />
+          <Route
+            path="/uploadfile"
+            render={() => this.auth(<FormPage view="upload" />)}
+          />
 
-          {/* File uploading test */}
-          {/* <Route path="/uploadfile" render={() => FormPage("upload")} /> */}
-          <Route path="/uploadfile" component={Filepond} />
-
+          <Route path="/grid" component={Grid} />
         </div>
       </Router>
     );

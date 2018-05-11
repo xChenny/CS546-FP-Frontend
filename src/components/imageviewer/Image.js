@@ -41,7 +41,7 @@ class Image extends Component {
         // <iframe src={data} style={{width: '600px', height: '500px'}} frameBorder="0"></iframe>
         <embed src={data} style={{width: '100%'}} />
       ) : (
-        <img src={data} alt="an image" style={{ width: "100%" }} />
+        <img src={data} alt="a pic from s3" style={{ width: "100%" }} />
       );
     return <Card>{emb}</Card>;
   }

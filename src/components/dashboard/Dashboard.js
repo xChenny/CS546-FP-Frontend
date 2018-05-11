@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import Card from "./Card";
-import Files from "./Files";
-import Sidebar from "./Sidebar";
+import Card from "../Card";
+import Files from "../Files";
+import Sidebar from "../Sidebar";
 
 // Dashboard component used to present the files and other information that the user
 // has access to
@@ -21,13 +21,14 @@ export default class Dashboard extends Component {
   }
 
   render() {
+    const { removeFile } = this.props
     return (
       <div className="dashboard">
         <div className="hero">
           <h1
             style={{ color: "white", textAlign: "center", paddingTop: "30px" }}
           >
-            Welcome to the Dashboard
+            Dashboard
           </h1>
         </div>
         <div className="dashboard-content">
@@ -35,7 +36,10 @@ export default class Dashboard extends Component {
             <Sidebar />
           </Card>
           <Card>
-            <Files files={this.state.files} />
+            <Files
+              files={this.state.files}
+              removeFile={removeFile.bind(this)}
+            />
           </Card>
         </div>
       </div>

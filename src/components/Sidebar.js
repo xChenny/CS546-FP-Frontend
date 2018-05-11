@@ -4,16 +4,13 @@ import { NavLink } from "react-router-dom";
 // A sidebar presentational component
 
 const Sidebar = () => {
-  const style = {
-    width: "200px"
-  };
   return (
-    <div className="sidebar" style={style}>
+    <div className="sidebar">
       <ul className="no-style-list">
         <NavLink to="/uploadfile">
           <li>
             <button
-              class="btn btn-primary btn-reduce-on-xs"
+              className="btn btn-primary btn-reduce-on-xs"
               style={{ width: "100%" }}
             >
               <span className='fui-upload' />
@@ -24,7 +21,7 @@ const Sidebar = () => {
         <NavLink to="/newfile">
           <li>
             <button
-              class="btn btn-primary btn-reduce-on-xs"
+              className="btn btn-primary btn-reduce-on-xs"
               style={{ width: "100%" }}
             >
               <span className='fui-plus' />

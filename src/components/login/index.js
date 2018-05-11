@@ -13,17 +13,17 @@ const verifyAndRedirect = async (e, loginActionCreator, history) => {
   const password = e.target.password.value;
   const res = await axios.post("/login", { username, password });
   if (res.data) {
-    loginActionCreator();
+    loginActionCreator(username);
     history.push("/dashboard");
   } else history.push("/error");
 };
 
 const mapStateToProps = state => ({
-  loggedIn: state.loggedIn
+  loggedIn: state.loginState.loggedIn
 });
 
 const mapDispatchToProps = dispatch => ({
-  login: () => dispatch(login()),
+  login: (username) => dispatch(login(username)),
   verify: verifyAndRedirect
 });
 

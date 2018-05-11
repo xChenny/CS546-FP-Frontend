@@ -1,10 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
 // Import React FilePond
 import { FilePond, File, registerPlugin } from "react-filepond";
 
 // Import FilePond styles
 import "filepond/dist/filepond.min.css";
+
+import { filePondSubmit } from "./index";
 
 // Register the image preview plugin
 import FilePondImagePreview from "filepond-plugin-image-preview";
@@ -17,7 +19,7 @@ export default class Filepond extends Component {
     super(props);
 
     this.state = {
-      files: ["index.html"]
+      files: []
     };
   }
 
@@ -27,12 +29,20 @@ export default class Filepond extends Component {
 
   render() {
     return (
-      <div className="App" style={{width: '600px'}}>
+      <div className="App" style={{ width: "600px" }}>
         {/* // Pass FilePond properties as attributes */}
+        <h1 style={{ marginBottom: "40px" }}>Upload Files</h1>
         <FilePond
           ref={ref => (this.pond = ref)}
-          server='/s3/upload'
+          allowMultiple={true}
+          server="/s3/dummy/dummy"
           oninit={() => this.handleInit()}
+          onaddfile={(err, file) => {
+            if (err) alert("File Upload failed!");
+            else {
+              filePondSubmit(file.file, file.filename);
+            }
+          }}
         >
           {this.state.files.map(file => <File key={file} source={file} />)}
         </FilePond>

@@ -1,8 +1,6 @@
 import React from "react";
 import { withRouter } from "react-router";
 import { onSubmit } from "./index";
-import { FilePond, File, registerPlugin } from "react-filepond";
-import "filepond/dist/filepond.min.css";
 
 // Component used for Uploading new files
 

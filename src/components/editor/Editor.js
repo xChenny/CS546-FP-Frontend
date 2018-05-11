@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { withRouter, Link } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import MonacoEditor from "react-monaco-editor";
 
 // Component for the File Editor View
@@ -57,35 +57,49 @@ class Editor extends Component {
       }
     };
     return (
-      <div>
-        <Link to="/dashboard">
-          <button>HOME</button>
-        </Link>
-        <button onClick={() => onSave(fileName, code)}>SAVE</button>
-        <button onClick={() => downloadFile(fileName, code)}>Download</button>
+      <React.Fragment>
+        <h1 style={{ textAlign: "center", color: "white" }}>{fileName}</h1>
         <div
+          className="max-width-height"
           style={{
-            padding: "30px",
-            backgroundColor: "white",
-            borderRadius: "5px",
-            width: "50%",
-            margin: "20px"
+            display: "grid",
+            gridTemplateColumns: "1fr 10fr 1fr 5fr 1fr"
           }}
         >
-          <MonacoEditor
-            width="650"
-            height="600"
-            language={fileType}
-            value={code}
-            onChange={e => {
-              this.setState({ code: e });
-            }}
-            options={config.options}
-            requireConfig={config.requireConfig}
-            editorDidMount={this.editorDidMount.bind(this)}
-          />
+          <div className="spacer" />
+          <div className="editor-container" style={{ width: "100%" }}>
+            <MonacoEditor
+              language={fileType}
+              value={code}
+              onChange={e => {
+                this.setState({ code: e });
+              }}
+              options={config.options}
+              requireConfig={config.requireConfig}
+              editorDidMount={this.editorDidMount.bind(this)}
+            />
+          </div>
+          <div className="spacer" />
+          <div className="editor-container" style={{ width: "100%" }}>
+            <div className="editor-buttons">
+              <button
+                className="btn btn-inverse"
+                onClick={() => onSave(fileName, code)}
+              >
+                SAVE
+              </button>
+              <button
+                className="btn btn-inverse"
+                onClick={() => downloadFile(fileName, code)}
+              >
+                Download
+              </button>
+            </div>
+            <hr />
+          </div>
+          <div className="spacer" />
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }

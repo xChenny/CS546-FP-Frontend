@@ -3,18 +3,29 @@
 }
 
 /* GENERAL TAGS START */
+html,
+body,
+#root,
+.App {
+  height: 100%;
+}
 body {
   margin: 0;
   background-color: #3498db;
 }
 h1 {
-  font-family: 'Fira Sans', sans-serif;
+  font-family: "Fira Sans", sans-serif;
+}
+
+.max-width-height {
+  height: 100%;
+  width: 100%;
 }
 /* GENERAL TAGS END */
 
 /* Dashboard.js START */
 .hero {
-  height: 200px;
+  height: 125px;
 }
 .dashboard-content {
   margin: 30px;
@@ -29,14 +40,44 @@ h1 {
   grid-template-columns: 1fr 2fr 1fr;
 }
 .form-card {
-  background-color: #ecf0f1
+  background-color: #ecf0f1;
 }
 /* FormPage.js END */
 
+/* Sidebar.js START */
+.sidebar {
+  width: 100%;
+}
 .no-style-list {
   list-style: none;
+  padding: 0;
+  width: 100%
 }
 
 .no-style-list > a > li {
   margin-bottom: 30px;
 }
+
+/* Sidebar.js END */
+
+/* Editor.js START */
+
+.editor-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.editor-buttons > * {
+  margin: 10px;
+}
+
+.editor-container {
+  padding: 30px;
+  background-color: white;
+  border-radius: 5px;
+  width: 50%;
+  margin: 20px;
+  height: 100%;
+}
+
+/* Editor.js END */

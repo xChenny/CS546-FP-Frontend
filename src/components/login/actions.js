@@ -1,8 +1,9 @@
 // Action creators used for Redux for the login component
 
-export const login = () => {
+export const login = (username) => {
   return {
-    type: 'LOGIN'
+    type: 'LOGIN',
+    username: username
   }
 }
 
