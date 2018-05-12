@@ -14,7 +14,7 @@ export default class Dashboard extends Component {
   }
 
   async componentDidMount() {
-    console.log("Getting file urls...");
+    // console.log("Getting file urls...");
     const filesPromise = await axios.get("/s3/all");
     const files = filesPromise.data;
     await this.setState({ files });

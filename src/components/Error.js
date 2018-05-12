@@ -10,7 +10,7 @@ const Error = () => {
     <React.Fragment>
       <h1>Error! Please log in!</h1>
       <Link to='/login'>
-        <button>Login Here</button>
+        <button className="btn btn-primary">Login Here</button>
       </Link>
     </React.Fragment>
   )

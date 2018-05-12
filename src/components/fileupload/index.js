@@ -10,7 +10,7 @@ export const filePondSubmit = async (file, fileName) => {
   };
   const promise = await axios.post(`/s3/upload/${fileName}`, formData, config);
   const data = promise.data;
-  console.log(data)
+  // console.log(data)
 }
 
 export const onSubmit = async (e, history) => {
@@ -28,7 +28,7 @@ export const onSubmit = async (e, history) => {
   };
   const promise = await axios.post(`/s3/upload/${fileName}`, formData, config);
   const data = promise.data;
-  console.log(`This is the returned data after uploading: ${data}`);
-  console.log(data);
+  // console.log(`This is the returned data after uploading: ${data}`);
+  // console.log(data);
   history.push(`/editor/${fileName}`);
 };

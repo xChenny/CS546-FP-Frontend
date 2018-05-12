@@ -2,7 +2,7 @@ import React from "react";
 import Card from "./Card";
 
 import LoginForm from "./login";
-import SignupForm from "./signup/SignupForm";
+import SignupForm from "./signup";
 import CreateNewFile from "./createfile/CreateFile";
 import Filepond from "./fileupload/FilePond";
 import Error from "./Error";
@@ -12,7 +12,6 @@ import Error from "./Error";
 
 const FormPage = ({view}) => {
   let page = 0;
-  console.log("The current view is: ", view)
   switch (view) {
     case "login":
       page = <LoginForm />;

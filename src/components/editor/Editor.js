@@ -20,7 +20,7 @@ class Editor extends Component {
 
   isMarkup(fileType) {
     if (fileType === "md") {
-      console.log("this file is a markdown file!");
+      // console.log("this file is a markdown file!");
       this.setState({ isMarkup: true });
       return true;
     }
@@ -31,12 +31,12 @@ class Editor extends Component {
       md: this.state.code
     });
     const html = mdpromise.data;
-    console.log(html);
+    // console.log(html);
     this.setState({ html });
   }
 
   async componentDidMount() {
-    console.log("running componentDidMount");
+    // console.log("running componentDidMount");
     const {
       changeFile,
       changeFileType,
@@ -55,7 +55,7 @@ class Editor extends Component {
       this.setState({ code });
     }
     if (await this.isMarkup(getExtension(fileName))) {
-      this.compileMarkdown()
+      this.compileMarkdown();
     }
   }
 
@@ -65,7 +65,7 @@ class Editor extends Component {
     const fileName = match.params.id;
     await this.setState({ fileType: getLanguage(fileName) });
     editor.focus();
-    console.log(this.state.fileType);
+    // console.log(this.state.fileType);
   }
 
   render() {
@@ -114,7 +114,7 @@ class Editor extends Component {
                 className="btn btn-inverse"
                 onClick={() => {
                   if (this.state.isMarkup) {
-                    this.compileMarkdown()
+                    this.compileMarkdown();
                   }
                   onSave(fileName, code);
                 }}

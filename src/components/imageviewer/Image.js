@@ -19,7 +19,7 @@ class Image extends Component {
     const data = promise.data;
     if (data) {
       await this.setState({ data });
-      console.log(this.state.data);
+      // console.log(this.state.data);
     } else {
       console.log("Error getting image from S3");
     }

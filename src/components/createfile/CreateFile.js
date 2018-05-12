@@ -44,7 +44,7 @@ class FileNameForm extends Component {
             className="form-control"
           />
           <br />
-          <button type="submit">Submit</button>
+          <button className='btn btn-primary' type="submit">Submit</button>
           <br />
         </form>
       </React.Fragment>

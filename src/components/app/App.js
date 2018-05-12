@@ -8,7 +8,6 @@ import FormPage from "../FormPage";
 import DashPage from "../dashboard";
 import Editor from "../editor";
 import ImageViewer from "../imageviewer/Image";
-import Grid from "../editor/Grid";
 
 import "../../style/App.css";
 
@@ -35,8 +34,16 @@ class App extends Component {
           {/* Doesn't Require Auth */}
           <Route path="/" component={() => <Navbar loggedIn={loggedIn} />} />
           <Route exact path="/" component={Homepage} />
-          <Route exact path="/signup" render={() => <FormPage view="signup" />} />
-          <Route exact path="/login" component={() => <FormPage view="login" />} />
+          <Route
+            exact
+            path="/signup"
+            render={() => <FormPage view="signup" />}
+          />
+          <Route
+            exact
+            path="/login"
+            component={() => <FormPage view="login" />}
+          />
           <Route path="/error" render={() => <FormPage view="error" />} />
 
           {/* Requires Auth */}
@@ -51,8 +58,6 @@ class App extends Component {
             path="/uploadfile"
             render={() => this.auth(<FormPage view="upload" />)}
           />
-
-          <Route path="/grid" component={Grid} />
         </div>
       </Router>
     );
