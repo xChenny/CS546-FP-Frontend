@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { withRouter } from "react-router-dom";
 import MonacoEditor from "react-monaco-editor";
+import Pdf from "../imageviewer/Pdf";
 
 // Component for the File Editor View
 
@@ -95,6 +96,7 @@ class Editor extends Component {
                 Download
               </button>
             </div>
+            {fileType && fileType === "md" ? <Pdf file={'pdf data'} /> : <p />}
             <hr />
           </div>
           <div className="spacer" />

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import axios from "axios";
 
 // import Auth from "../Auth";
 import Navbar from "../navbar";
@@ -38,7 +37,7 @@ class App extends Component {
           <Route exact path="/" component={Homepage} />
           <Route exact path="/signup" render={() => <FormPage view="signup" />} />
           <Route exact path="/login" component={() => <FormPage view="login" />} />
-          <Route path="/error" render={<FormPage view="error" />} />
+          <Route path="/error" render={() => <FormPage view="error" />} />
 
           {/* Requires Auth */}
           <Route path="/dashboard" render={() => this.auth(<DashPage />)} />

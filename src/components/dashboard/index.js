@@ -1,7 +1,5 @@
-import axios from "axios";
 import { connect } from "react-redux";
 import Dashboard from "./Dashboard";
-import { logout } from "../login/actions";
 
 // Container component for the Dashboard Presentational component
 

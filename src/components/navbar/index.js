@@ -1,4 +1,3 @@
-import axios from "axios";
 import { connect } from "react-redux";
 import Navbar from "./Navbar";
 import { logout } from "../login/actions";
