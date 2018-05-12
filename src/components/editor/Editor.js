@@ -26,6 +26,15 @@ class Editor extends Component {
     }
   }
 
+  async compileMarkdown() {
+    const mdpromise = await axios.post("/mdcompile/compile", {
+      md: this.state.code
+    });
+    const html = mdpromise.data;
+    console.log(html);
+    this.setState({ html });
+  }
+
   async componentDidMount() {
     console.log("running componentDidMount");
     const {
@@ -46,14 +55,7 @@ class Editor extends Component {
       this.setState({ code });
     }
     if (await this.isMarkup(getExtension(fileName))) {
-      const mdpromise = await axios.post("/mdcompile/compile", {
-        md: this.state.code
-      });
-      const html = mdpromise.data;
-      console.log(html);
-      this.setState({ html });
-    } else {
-      this.setState({ html: false });
+      this.compileMarkdown()
     }
   }
 
@@ -110,7 +112,12 @@ class Editor extends Component {
             <div className="editor-buttons">
               <button
                 className="btn btn-inverse"
-                onClick={() => onSave(fileName, code)}
+                onClick={() => {
+                  if (this.state.isMarkup) {
+                    this.compileMarkdown()
+                  }
+                  onSave(fileName, code);
+                }}
               >
                 SAVE
               </button>
