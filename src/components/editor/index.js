@@ -37,6 +37,14 @@ const getLanguage = filename => {
   }
 };
 
+const getExtension = filename => {
+  if (filename.indexOf(".") !== -1)
+    return filename
+      .split(".")
+      .slice(-1)
+      .pop()
+      .toLowerCase();
+};
 const mapStateToProps = state => ({
   loggedIn: state.loginState.loggedIn,
   fileType: state.editorState.fileType,
@@ -47,6 +55,7 @@ const mapDispatchToProps = dispatch => ({
   onSave,
   downloadFile,
   getLanguage,
+  getExtension,
   changeFile: fileName => dispatch(changeFile(fileName)),
   changeFileType: fileType => dispatch(onChangeFileType(fileType))
 });

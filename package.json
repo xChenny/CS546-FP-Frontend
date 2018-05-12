@@ -5,6 +5,7 @@
   "proxy": "http://localhost:5500",
   "dependencies": {
     "filepond-plugin-image-preview": "^1.0.9",
+    "html-react-parser": "^0.4.5",
     "react": "^16.3.2",
     "react-dom": "^16.3.2",
     "react-filepond": "^2.0.6",

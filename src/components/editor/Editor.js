@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Parser from "html-react-parser";
 import { withRouter } from "react-router-dom";
 import MonacoEditor from "react-monaco-editor";
 import Pdf from "../imageviewer/Pdf";
@@ -12,13 +13,27 @@ class Editor extends Component {
     this.state = {
       fileName: this.props.match.params.id,
       fileType: "",
-      code: ""
+      code: "",
+      isMarkup: false
     };
+  }
+
+  isMarkup(fileType) {
+    if (fileType === "md") {
+      console.log("this file is a markdown file!");
+      this.setState({ isMarkup: true });
+      return true;
+    }
   }
 
   async componentDidMount() {
     console.log("running componentDidMount");
-    const { changeFile, changeFileType, getLanguage } = this.props;
+    const {
+      changeFile,
+      changeFileType,
+      getLanguage,
+      getExtension
+    } = this.props;
     const fileName = this.props.match.params.id;
     // change redux current fileName
     changeFile(fileName);
@@ -29,6 +44,16 @@ class Editor extends Component {
       console.log("Error getting file from S3!");
     } else {
       this.setState({ code });
+    }
+    if (await this.isMarkup(getExtension(fileName))) {
+      const mdpromise = await axios.post("/mdcompile/compile", {
+        md: this.state.code
+      });
+      const html = mdpromise.data;
+      console.log(html);
+      this.setState({ html });
+    } else {
+      this.setState({ html: false });
     }
   }
 
@@ -43,7 +68,7 @@ class Editor extends Component {
 
   render() {
     const { onSave, downloadFile, fileName } = this.props;
-    const { code, fileType } = this.state;
+    const { code, fileType, isMarkup } = this.state;
     const config = {
       options: {
         selectOnLineNumbers: true
@@ -64,7 +89,7 @@ class Editor extends Component {
           className="max-width-height"
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 10fr 1fr 5fr 1fr"
+            gridTemplateColumns: "1fr 10fr 1fr 7fr 1fr"
           }}
         >
           <div className="spacer" />
@@ -96,8 +121,15 @@ class Editor extends Component {
                 Download
               </button>
             </div>
-            {fileType && fileType === "md" ? <Pdf file={'pdf data'} /> : <p />}
             <hr />
+            {this.state.html && isMarkup ? (
+              <React.Fragment>
+                <p>Rendered Markdown: </p>
+                <div className="compiled-md">{Parser(this.state.html)}</div>
+              </React.Fragment>
+            ) : (
+              <div />
+            )}
           </div>
           <div className="spacer" />
         </div>
