@@ -17,3 +17,9 @@ Andrew Chen, Corey Barnwell, Keith Morel
 ## Installation
 
 1. Please refer to the instructions listed in the backend repository located [here](https://github.com/xChenny/CS546-Final-Project)
+
+## Live Demo
+
+Check the app out [here!](https://codejs-editor.appspot.com)
+
+**Note that the application may not be available 24/7 due to the low-priority hosting plan that it is on. I apologize for the inconvenience!**
